@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -109,8 +108,9 @@ public class Game : MonoBehaviour
     {
         gameOver = true;
         GameObject.FindGameObjectWithTag("GameOverText").GetComponent<Text>().enabled = true;
-        GameObject.FindGameObjectWithTag("GameOverText").GetComponent<Text>().text = "Game over + \n" + playerWinner + "is a winner";
+        GameObject.FindGameObjectWithTag("GameOverText").GetComponent<Text>().text = "Game over.\n" + playerWinner + " is a winner";
         
         GameObject.FindGameObjectWithTag("RestartText").GetComponent<Text>().enabled = true;
     }
+
 }

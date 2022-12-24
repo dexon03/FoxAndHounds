@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -79,6 +77,7 @@ public class Checker : MonoBehaviour
    {
       yBoard = y;
    }
+   
 
    private void OnMouseUp()
    {
@@ -86,9 +85,12 @@ public class Checker : MonoBehaviour
       {
          DestroyMovePlates();
          InitiateMovePlates();
+         if (player == "Fox"  && GameObject.FindGameObjectsWithTag("MovePlate").Length == 0)
+         {
+           controller.GetComponent<Game>().Winner("Hound");
+         }
       }
    }
-
    public void DestroyMovePlates()
    {
       GameObject[] movePlates = GameObject.FindGameObjectsWithTag("MovePlate");
