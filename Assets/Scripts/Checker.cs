@@ -81,15 +81,11 @@ public class Checker : MonoBehaviour
 
    private void OnMouseUp()
    {
-      if (!controller.GetComponent<Game>().IsGameOver() && controller.GetComponent<Game>().GetCurrentPlayer() == player)
-      {
+      // if (controller.GetComponent<Game>().GetCurrentPlayer() == player)
+      // {
          DestroyMovePlates();
          InitiateMovePlates();
-         if (player == "Fox"  && GameObject.FindGameObjectsWithTag("MovePlate").Length == 0)
-         {
-           controller.GetComponent<Game>().Winner("Hound");
-         }
-      }
+      // }
    }
    public void DestroyMovePlates()
    {

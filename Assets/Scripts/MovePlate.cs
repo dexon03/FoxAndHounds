@@ -7,7 +7,6 @@ public class MovePlate : MonoBehaviour
     private GameObject reference = null;
     private int matrixX;
     private int matrixY;
-    public bool catched = false;
     
 
     public void OnMouseUp()
@@ -22,10 +21,6 @@ public class MovePlate : MonoBehaviour
         
         controller.GetComponent<Game>().SetPosition(reference);
         
-        if (reference.GetComponent<Checker>().name == "Fox" && reference.GetComponent<Checker>().GetYBoard() == 7)
-        {
-            controller.GetComponent<Game>().Winner("Fox");
-        }
         controller.GetComponent<Game>().NextTurn();
         reference.GetComponent<Checker>().DestroyMovePlates();
     }
@@ -45,32 +40,5 @@ public class MovePlate : MonoBehaviour
     {
         return reference;
     }
-
-    public bool FoxCaught()
-    {
-        var checker = reference.GetComponent<Checker>();
-        if (checker.name == "Fox")
-        {
-            int xCoord = reference.GetComponent<Checker>().GetXBoard();
-            int yCoord = reference.GetComponent<Checker>().GetYBoard();
-            if (NotEmptyPlate(xCoord + 1, yCoord + 1) && NotEmptyPlate(xCoord - 1, yCoord - 1) &&
-                NotEmptyPlate(xCoord + 1, yCoord - 1) && NotEmptyPlate(xCoord - 1, yCoord + 1))
-            {
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    public bool NotEmptyPlate(int x, int y)
-    {
-        if (!controller.GetComponent<Game>().PositionOnBoard(x, y) ||
-            controller.GetComponent<Game>().GetPosition(x, y) != null)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    
 }
