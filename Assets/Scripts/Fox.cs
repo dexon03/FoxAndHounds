@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Checker : MonoBehaviour
+public class Fox : MonoBehaviour
 {
    // References
    public GameObject controller;
@@ -15,8 +15,8 @@ public class Checker : MonoBehaviour
    // Variable to keep track of "fox" or "hound" player
    private string player;
    
-   //References for all the sprites that the piece can be
-   public Sprite Fox, Hound_1, Hound_2, Hound_3, Hound_4;
+   
+   public Sprite FoxChecker;
 
    public void Activate()
    {
@@ -24,26 +24,9 @@ public class Checker : MonoBehaviour
       
       // take the instantiated location and adjust the transform
       SetCoords();
-      switch (this.name)
-      {
-         case "Fox": this.GetComponent<SpriteRenderer>().sprite = Fox;
-            player = "Fox";
-            break;
-         case "Hound_1": this.GetComponent<SpriteRenderer>().sprite = Hound_1;
-            player = "Hound";
-            break;
-         case "Hound_2" :this.GetComponent<SpriteRenderer>().sprite = Hound_2;
-            player = "Hound";
-            break;
-         case "Hound_3" : this.GetComponent<SpriteRenderer>().sprite = Hound_3;
-            player = "Hound";
-            break;
-         case "Hound_4" : this.GetComponent<SpriteRenderer>().sprite = Hound_4;
-            player = "Hound";
-            break;
-      }
-
       
+      this.GetComponent<SpriteRenderer>().sprite = FoxChecker;
+      player = "Fox";
    }
 
    public void SetCoords()
@@ -98,24 +81,10 @@ public class Checker : MonoBehaviour
 
    public void InitiateMovePlates()
    {
-      switch (this.name)
-      {
-         case "Hound_1":
-         case "Hound_2":
-         case "Hound_3":
-         case "Hound_4":
-            LineMovePlate(1,-1);
-            LineMovePlate(-1,-1);
-            break;
-         case "Fox":
-            LineMovePlate(1,-1);
-            LineMovePlate(-1,-1);
-            LineMovePlate(1,1);
-            LineMovePlate(-1,1);
-            break;
-      }
-
-      
+      LineMovePlate(1,-1);
+      LineMovePlate(-1,-1);
+      LineMovePlate(1,1);
+      LineMovePlate(-1,1);
    }
 
    private void LineMovePlate(int xIncrement, int yIncrement)

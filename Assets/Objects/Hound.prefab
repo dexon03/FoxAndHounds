@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8561577131739180600}
   - component: {fileID: 8934520697925132374}
+  - component: {fileID: 1184503804278231095}
   - component: {fileID: 1045033653914852425}
-  - component: {fileID: 4370977805308643967}
   m_Layer: 0
-  m_Name: Fox
+  m_Name: Hound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,6 +86,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1184503804278231095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8239896610182125394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e5b9b2dd47a0440a4079762f67a485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  movePlate: {fileID: 5250011207550919946, guid: 22dde2bfacb565d43b3bd4e529beb150, type: 3}
+  Fox: {fileID: 21300000, guid: bcb4c99fcde35f447a403737b4adcdb5, type: 3}
+  Hound_1: {fileID: 21300000, guid: 00a67c37550e49746982f28a4bfeb45f, type: 3}
+  Hound_2: {fileID: 21300000, guid: 00a67c37550e49746982f28a4bfeb45f, type: 3}
+  Hound_3: {fileID: 21300000, guid: 00a67c37550e49746982f28a4bfeb45f, type: 3}
+  Hound_4: {fileID: 21300000, guid: 00a67c37550e49746982f28a4bfeb45f, type: 3}
 --- !u!61 &1045033653914852425
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,18 +131,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.18, y: 0.18}
   m_EdgeRadius: 0
---- !u!114 &4370977805308643967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8239896610182125394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba7f722d13b0f0439e4877db0b211e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  movePlate: {fileID: 5250011207550919946, guid: 22dde2bfacb565d43b3bd4e529beb150, type: 3}
-  FoxChecker: {fileID: 21300000, guid: bcb4c99fcde35f447a403737b4adcdb5, type: 3}

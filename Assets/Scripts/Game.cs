@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class Game : MonoBehaviour
 {
-    public GameObject Piece;
+    public GameObject Fox;
+    public GameObject Hound;
 
     // Positions and team for each piece
     private GameObject[,] positions = new GameObject[8, 8];
@@ -18,19 +19,20 @@ public class Game : MonoBehaviour
 
     private string currentPlayer;
 
-    private bool gameOver = false;
+    private bool gameOver;
     // Start is called before the first frame update
     void Start()
     {
+        gameOver = false;
         currentPlayer = "Fox";
-        foxPlayer = Create("Fox", 4, 0);
+        foxPlayer = CreateFox(4, 0);
 
         houndPlayer = new GameObject[]
         {
-            Create("Hound_1", 1, 7),
-            Create("Hound_2", 3, 7),
-            Create("Hound_3", 5, 7),
-            Create("Hound_4", 7, 7)
+            CreateHound("Hound_1", 1, 7),
+            CreateHound("Hound_2", 3, 7),
+            CreateHound("Hound_3", 5, 7),
+            CreateHound("Hound_4", 7, 7)
         };
         
         // set all piece position on the position board
@@ -43,21 +45,40 @@ public class Game : MonoBehaviour
     }
     
 
-    private GameObject Create(string name, int x, int y)
+    private GameObject CreateFox(int x, int y)
     {
-        var obj = Instantiate(Piece, new Vector3(0, 0, -1), Quaternion.identity);
-        Checker cm = obj.GetComponent<Checker>();
-        cm.name = name;
-        cm.SetXBoard(x);
-        cm.SetYBoard(y);
-        cm.Activate();
+        var obj = Instantiate(Fox, new Vector3(0, 0, -1), Quaternion.identity);
+        Fox fox = obj.GetComponent<Fox>();
+        fox.name = "Fox";
+        fox.SetXBoard(x);
+        fox.SetYBoard(y);
+        fox.Activate();
+        return obj;
+    }
+    
+    private GameObject CreateHound(string name, int x, int y)
+    {
+        var obj = Instantiate(Hound, new Vector3(0, 0, -1), Quaternion.identity);
+        Hound hound = obj.GetComponent<Hound>();
+        hound.name = name;
+        hound.SetXBoard(x);
+        hound.SetYBoard(y);
+        hound.Activate();
         return obj;
     }
 
     public void SetPosition(GameObject obj)
     {
-        Checker cm = obj.GetComponent<Checker>();
-        positions[cm.GetXBoard(), cm.GetYBoard()] = obj;
+        if (obj.name == "Fox")
+        {
+            Fox fox = obj.GetComponent<Fox>();
+            positions[fox.GetXBoard(), fox.GetYBoard()] = obj;
+        }
+        else
+        {
+            Hound hound = obj.GetComponent<Hound>();
+            positions[hound.GetXBoard(), hound.GetYBoard()] = obj;
+        }
     }
     public void SetPositionEmpty(int x, int y)
     {
@@ -116,7 +137,6 @@ public class Game : MonoBehaviour
             gameOver = true;
             Winner("Fox");
         }
-
         if (HoundWin())
         {
             gameOver = true;
@@ -125,9 +145,10 @@ public class Game : MonoBehaviour
         
     }
 
+    
     private bool FoxWin()
     {
-        if (foxPlayer.GetComponent<Checker>().GetYBoard() == 7 || CheckOrFoxFarThanHound())
+        if (foxPlayer.GetComponent<Fox>().GetYBoard() == 7 || CheckOrFoxFarThanHound())
         {
             return true;
         }
@@ -139,10 +160,10 @@ public class Game : MonoBehaviour
         int maxHoundPosition = int.MinValue;
         foreach (var hound in houndPlayer)
         {
-            maxHoundPosition = Math.Max(maxHoundPosition, hound.GetComponent<Checker>().GetYBoard());
+            maxHoundPosition = Math.Max(maxHoundPosition, hound.GetComponent<Hound>().GetYBoard());
         }
 
-        if (maxHoundPosition <= foxPlayer.GetComponent<Checker>().GetYBoard())
+        if (maxHoundPosition <= foxPlayer.GetComponent<Fox>().GetYBoard())
         {
             return true;
         }
@@ -152,8 +173,8 @@ public class Game : MonoBehaviour
 
     private bool HoundWin()
     {
-        var foxX = foxPlayer.GetComponent<Checker>().GetXBoard();
-        var foxY = foxPlayer.GetComponent<Checker>().GetYBoard();
+        var foxX = foxPlayer.GetComponent<Fox>().GetXBoard();
+        var foxY = foxPlayer.GetComponent<Fox>().GetYBoard();
         var possibleFoxMoves = FindExistingFoxMove(foxX, foxY);
         
         if (possibleFoxMoves.Count == 0)
