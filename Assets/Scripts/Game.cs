@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -97,12 +99,95 @@ public class Game : MonoBehaviour
 
     public void Update()
     {
+        CheckGameOver();
+        
+        
         if (gameOver && Input.GetMouseButtonDown(0))
         {
             gameOver = false;
             SceneManager.LoadScene("Game");
         }
     }
+    
+    private void CheckGameOver()
+    {
+        if (FoxWin())
+        {
+            gameOver = true;
+            Winner("Fox");
+        }
+
+        if (HoundWin())
+        {
+            gameOver = true;
+            Winner("Hound");
+        }
+        
+    }
+
+    private bool FoxWin()
+    {
+        if (foxPlayer.GetComponent<Checker>().GetYBoard() == 7 || CheckOrFoxFarThanHound())
+        {
+            return true;
+        }
+
+        return false;
+    }
+    private bool CheckOrFoxFarThanHound()
+    {
+        int maxHoundPosition = int.MinValue;
+        foreach (var hound in houndPlayer)
+        {
+            maxHoundPosition = Math.Max(maxHoundPosition, hound.GetComponent<Checker>().GetYBoard());
+        }
+
+        if (maxHoundPosition < foxPlayer.GetComponent<Checker>().GetYBoard())
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool HoundWin()
+    {
+        var foxX = foxPlayer.GetComponent<Checker>().GetXBoard();
+        var foxY = foxPlayer.GetComponent<Checker>().GetYBoard();
+        var possibleFoxMoves = FindExistingFoxMove(foxX, foxY);
+        
+        if (possibleFoxMoves.Count == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private List<int[]> FindExistingFoxMove(int x, int y)
+    {
+        List<int[]> moves = new List<int[]>();
+        if(PositionOnBoard(x+1, y+1) && GetPosition(x+1, y+1) == null)
+        {
+            moves.Add( new []{x+1,y+1});
+        }
+        if (PositionOnBoard(x+1,y-1) && GetPosition(x+1, y-1) == null)
+        {
+            moves.Add( new []{x+1,y-1});
+        }
+        if (PositionOnBoard(x-1,y+1) && GetPosition(x-1,y+1) == null )   
+        {
+            moves.Add( new []{x-1,y+1});
+        }
+        if(PositionOnBoard(x-1,y-1) && GetPosition(x-1,y-1) == null)
+        {
+            moves.Add( new []{x-1,y-1});
+        }
+        
+        return moves;
+    }
+
+    
 
     public void Winner(string playerWinner)
     {
