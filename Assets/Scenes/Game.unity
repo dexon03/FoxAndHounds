@@ -320,7 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84d9aaa9efcd0a74c952b69794433913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Piece: {fileID: 8239896610182125394, guid: b64071aa17e30de41ba1f9f43a1407e2, type: 3}
+  Fox: {fileID: 8239896610182125394, guid: b64071aa17e30de41ba1f9f43a1407e2, type: 3}
+  Hound: {fileID: 8239896610182125394, guid: 28a0d53396cb32b42b89332bfec8729f, type: 3}
 --- !u!4 &539451660
 Transform:
   m_ObjectHideFlags: 0
