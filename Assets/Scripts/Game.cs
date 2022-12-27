@@ -11,11 +11,11 @@ public class Game : MonoBehaviour
     public GameObject Hound;
 
     // Positions and team for each piece
-    private GameObject[,] positions = new GameObject[8, 8];
+    private GameObject[,] positions;
 
-    private GameObject foxPlayer = new GameObject();
+    private GameObject foxPlayer;
 
-    private GameObject[] houndPlayer = new GameObject[4];
+    private GameObject[] houndPlayer;
 
     private string currentPlayer;
 
@@ -23,6 +23,9 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        positions = new GameObject[8, 8];
+        foxPlayer = new GameObject();
+        houndPlayer = new GameObject[4];
         gameOver = false;
         currentPlayer = "Fox";
         foxPlayer = CreateFox(4, 0);

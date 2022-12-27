@@ -12,8 +12,7 @@ public class Hound : MonoBehaviour
    private int xBoard = -1;
    private int yBoard = -1;
    
-   // Variable to keep track of "fox" or "hound" player
-   private string player;
+
    
    //References for all the sprites that the piece can be
    public Sprite Hound_1, Hound_2, Hound_3, Hound_4;
@@ -27,16 +26,12 @@ public class Hound : MonoBehaviour
       switch (this.name)
       {
          case "Hound_1": this.GetComponent<SpriteRenderer>().sprite = Hound_1;
-            player = "Hound";
             break;
          case "Hound_2" :this.GetComponent<SpriteRenderer>().sprite = Hound_2;
-            player = "Hound";
             break;
          case "Hound_3" : this.GetComponent<SpriteRenderer>().sprite = Hound_3;
-            player = "Hound";
             break;
          case "Hound_4" : this.GetComponent<SpriteRenderer>().sprite = Hound_4;
-            player = "Hound";
             break;
       }
 

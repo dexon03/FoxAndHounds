@@ -12,10 +12,8 @@ public class Fox : MonoBehaviour
    private int xBoard = -1;
    private int yBoard = -1;
    
-   // Variable to keep track of "fox" or "hound" player
-   private string player;
-   
-   
+
+
    public Sprite FoxChecker;
 
    public void Activate()
@@ -26,7 +24,6 @@ public class Fox : MonoBehaviour
       SetCoords();
       
       this.GetComponent<SpriteRenderer>().sprite = FoxChecker;
-      player = "Fox";
    }
 
    public void SetCoords()
