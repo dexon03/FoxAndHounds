@@ -142,7 +142,7 @@ public class Game : MonoBehaviour
             maxHoundPosition = Math.Max(maxHoundPosition, hound.GetComponent<Checker>().GetYBoard());
         }
 
-        if (maxHoundPosition < foxPlayer.GetComponent<Checker>().GetYBoard())
+        if (maxHoundPosition <= foxPlayer.GetComponent<Checker>().GetYBoard())
         {
             return true;
         }
