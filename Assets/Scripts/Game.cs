@@ -23,6 +23,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize objects
         positions = new GameObject[8, 8];
         foxPlayer = new GameObject();
         houndPlayer = new GameObject[4];
@@ -124,8 +125,7 @@ public class Game : MonoBehaviour
     public void Update()
     {
         CheckGameOver();
-        
-        
+
         if (gameOver && Input.GetMouseButtonDown(0))
         {
             gameOver = false;
@@ -137,12 +137,10 @@ public class Game : MonoBehaviour
     {
         if (FoxWin())
         {
-            gameOver = true;
             Winner("Fox");
         }
         if (HoundWin())
         {
-            gameOver = true;
             Winner("Hound");
         }
         
