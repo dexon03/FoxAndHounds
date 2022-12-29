@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TreeSearch;
 
 
 public class Game : MonoBehaviour
@@ -18,7 +19,7 @@ public class Game : MonoBehaviour
     private GameObject[] houndPlayer;
 
     private string currentPlayer;
-
+    
     private bool gameOver;
     // Start is called before the first frame update
     void Start()
